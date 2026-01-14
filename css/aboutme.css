@@ -1,0 +1,762 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body{
+  padding-top: 60px;
+}
+
+html, body{
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* HEADER (MENU) */
+
+.logo{
+    margin-left: 20px;
+    font-weight: 700;
+    font-size: 1.2rem;
+    white-space: nowrap;
+    letter-spacing: 0.5px;
+    pointer-events: none;
+    user-select: none;
+    text-transform: uppercase;
+    text-shadow: 0 0 32px #82c3ff;
+    color: var(--text-color);
+}
+
+.open-sidebar-button img,
+.close-sidebar-button img{
+    pointer-events: none;
+    user-select: none;
+}
+
+label{
+    user-select: none;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&display=swap');
+
+:root{
+  --color-1: #06070d;
+  --text-color: #e9ecff;
+  --accent-color: #82c3ff;
+  --color-2: #4da3ff;
+}
+
+html{
+  font-family: Poppins, Segoe UI, Tahoma, sans-serif;
+}
+
+/* ===== NAVBAR ===== */
+
+
+nav{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  height: 60px;
+  background-color: #0b0f1a;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  border-bottom: 1px solid var(--accent-color);
+  backdrop-filter: blur(4px);
+}
+
+/* odkazy vpravo */
+.links-container{
+  display: flex;
+  align-items: center;
+}
+
+.nav-menu{
+    list-style: none;
+    display: flex;
+    gap: 0px;
+    position: relative;
+}
+
+.nav-menu li{
+    height: 60px;
+    width: 110px;
+    flex-shrink: 0;
+}
+
+.nav-menu li a{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 500;
+    user-select: none;
+    position: relative;
+    z-index: 2;
+    transition: color .25s ease;
+}
+
+.nav-menu a:hover, .nav-menu a.active{
+    color: var(--accent-color);
+}
+
+.nav-indicator{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 110px;
+    height: 60px;
+    background: rgba(130,195,255,.12);
+    border-bottom: 2px solid var(--accent-color);
+    transform: translateX(calc(var(--pos) * 110px));
+    transition: transform .35s cubic-bezier(.4,0,.2,1);
+    z-index: 1;
+}
+
+#sidebar-active{
+    display: none;
+}
+
+.open-sidebar-button,
+.close-sidebar-button{
+  display: none;
+  font-size: 26px;
+  color: var(--text-color);
+  cursor: pointer;
+}
+
+.nav-menu:has(a.active){
+  --pos: 0;
+}
+
+.nav-menu:has(li:nth-child(1) a.active){ --pos: 0 }
+.nav-menu:has(li:nth-child(2) a.active){ --pos: 1 }
+.nav-menu:has(li:nth-child(3) a.active){ --pos: 2 }
+.nav-menu:has(li:nth-child(4) a.active){ --pos: 3 }
+.nav-menu:has(li:nth-child(5) a.active){ --pos: 4 }
+
+.nav-menu:has(li:nth-child(1):hover){ --pos: 0 }
+.nav-menu:has(li:nth-child(2):hover){ --pos: 1 }
+.nav-menu:has(li:nth-child(3):hover){ --pos: 2 }
+.nav-menu:has(li:nth-child(4):hover){ --pos: 3 }
+.nav-menu:has(li:nth-child(5):hover){ --pos: 4 }
+
+
+/***** SEPARATOR *****/
+.section-separator{
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg,
+      #0059ff,
+      #82c3ff,
+      #0059ff
+  );
+  box-shadow: 0 0 12px rgba(130,195,255,.7);
+}
+
+
+
+
+
+/***** MAIN *****/
+
+/** WELCOME **/
+
+.welcome{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    user-select: none;
+    color: white;
+
+    /* tohle je hlavní pozadí */
+    background:
+        radial-gradient(circle at center,
+            rgba(0, 119, 255, 0.12),
+            rgba(0, 0, 0, 1) 65%
+        ),
+        linear-gradient(180deg, #020409, #020610 60%, #000000);
+}
+
+
+/* hlavní titulek */
+.welcome h1{
+    font-size: 3.5rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+
+    text-shadow:
+    0 0 12px rgba(130,195,255,.8),
+    0 0 28px rgba(77,163,255,.5),
+    0 0 60px rgba(77,163,255,.25);
+
+    margin-bottom: 1rem;
+}
+
+.welcome h2{
+    font-size: 2.5rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+
+    text-shadow:
+    0 0 12px rgba(130,195,255,.8),
+    0 0 28px rgba(77,163,255,.5),
+    0 0 60px rgba(77,163,255,.25);
+
+    margin-bottom: 1rem;
+}
+
+/* řádek pod nadpisem */
+.divider{
+    width: 120px;
+    height: 2px;
+    background: #4da3ff;
+    margin: 1.5rem 0;
+    box-shadow: 0 0 15px rgba(97, 145, 216, 0.7);
+}
+
+/* podtitul */
+.subtitle{
+    color: #4da3ff;
+    letter-spacing: 3px;
+    font-size: 0.9rem;
+}
+
+/* jemná animace záře */
+.welcome h1:hover{
+    text-shadow:
+        0 0 20px rgba(130,195,255,.9),
+        0 0 50px rgba(77,163,255,.6),
+        0 0 90px rgba(77,163,255,.35);
+    transition: .4s ease;
+}
+
+.welcome::before{
+    content:"";
+    position:absolute;
+    top:50%;
+    left:50%;
+    width:900px;
+    height:900px;
+    transform:translate(-50%,-50%);
+    border-radius:50%;
+    background:radial-gradient(circle, rgba(77,163,255,.35), transparent 70%);
+    filter: blur(30px);
+    animation: pulse 6s infinite ease-in-out;
+}
+
+@keyframes pulse{
+    0%{transform:translate(-50%,-50%) scale(1);}
+    50%{transform:translate(-50%,-50%) scale(1.15);}
+    100%{transform:translate(-50%,-50%) scale(1);}
+}
+
+.particles{
+    position:absolute;
+    inset:0;
+
+    background-image:
+        radial-gradient(2px 2px at 15% 20%, rgba(255,255,255,.8), transparent),
+        radial-gradient(2px 2px at 30% 70%, rgba(130,195,255,.9), transparent),
+        radial-gradient(1.5px 1.5px at 75% 30%, rgba(255,255,255,.8), transparent),
+        radial-gradient(1.5px 1.5px at 60% 85%, rgba(255,255,255,.9), transparent),
+        radial-gradient(2px 2px at 85% 55%, rgba(130,195,255,.9), transparent),
+        radial-gradient(1.2px 1.2px at 40% 40%, rgba(255,255,255,.7), transparent);
+
+    animation: float 14s linear infinite,
+               twinkle 2.5s ease-in-out infinite alternate;
+
+    pointer-events:none;
+    opacity:.9;
+}
+
+@keyframes float{
+    0%{transform: translateY(0);}
+    50%{transform: translateY(-18px);}
+    100%{transform: translateY(0);}
+}
+
+@keyframes twinkle{
+    from{opacity:.4;}
+    to{opacity:1;}
+}
+
+/** ABOUT-ME **/
+
+.about-me{
+  width: 100%; 
+  padding: 120px 0; 
+  background: linear-gradient(180deg, #02040a, #040b18);
+}
+
+.about-me-container{
+  max-width: 1400px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  gap: 70px;
+  padding: 0 40px;
+}
+
+.about-me-photos{
+  flex: 1;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
+.about-me-photos img{
+  width: 210px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 18px;
+  box-shadow: 0 0 35px rgba(130,195,255,.35);
+}
+
+.about-me-text{
+  flex: 1;
+  max-width: 520px;
+  color: white;
+}
+
+.about-me-text h2{
+  font-size: 3rem;
+  margin-bottom: 20px;
+  color:#d2ebf8;
+  text-shadow:0 0 30px rgba(110, 232, 236, 0.5);
+}
+
+.about-me-text p{
+  font-size:1.1rem;
+  line-height:1.8;
+  margin-bottom:14px;
+  color:#d7e3ff;
+}
+
+main a {
+  color:#82c3ff;
+  font-weight:600;
+}
+
+.school-link:hover{
+  text-decoration: underline;
+  color:#b7dcff;
+}
+
+.about-me-photos img:nth-child(1){
+    margin-top: 40px;
+}
+
+.about-me-photos img:nth-child(2){
+    margin-bottom: 40px;
+}
+
+.about-me-photos img:nth-child(3){
+    margin-top: 60px;
+}
+
+.about-me-photos img:nth-child(4){
+    margin-bottom: 20px;
+}
+
+/** MY-WAY **/
+
+.my-way{
+    width: 100%;
+    padding: 120px 0;
+    background: linear-gradient(180deg, #040b18, #02040a);
+}
+
+.my-way h2{
+    text-align: center;
+    font-size: 3rem;
+    margin-bottom: 40px;
+    color: #d2ebf8;
+    text-shadow: 0 0 30px rgba(110,232,236,.45);
+}
+
+.my-way p{
+    max-width: 820px;
+    margin: 0 auto 24px auto;
+    padding: 0 20px;
+    font-size: 1.15rem;
+    line-height: 1.67;
+    color: #d7e3ff;
+    text-align: center;
+}
+
+.my-way .highlight{
+    color: #82c3ff;
+    font-weight: 600;
+    text-shadow: 0 0 10px rgba(130,195,255,.35);
+}
+
+/** HOBBIES **/
+
+.hobbies{
+  width: 100%;
+  padding: 120px 0;
+  background: linear-gradient(180deg, #02040a, #040b18);
+  color: #d7e3ff;
+}
+
+/* hlavní nadpis */
+.hobbies .heading{
+  text-align: center;
+  font-size: 3.2rem;
+  margin-bottom: 120px;
+  color: #d2ebf8;
+  text-shadow: 0 0 35px rgba(110,232,236,.45);
+}
+
+/* == FREE TIME == */
+
+.free-time{
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 80px;
+}
+
+.free-time-layout{
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    align-items: start;
+    gap: 40px;
+}
+
+/* text */
+.free-time-text p{
+    font-size: 1.15rem;
+    line-height: 1.67;
+    margin-bottom: 22px;
+    color: #d7e3ff;
+}
+
+.free-time .section-heading{
+  max-width: 1400px;
+  margin-bottom: 32px;
+  text-align: left;
+}
+
+/* fotky */
+.sport-photos{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+    align-items: start;
+}
+
+.sport-photos img{
+    width: 100%;
+    height: 420px;
+    object-fit: cover;
+    border-radius: 20px;
+    box-shadow: 0 0 40px rgba(130,195,255,.45);
+}
+
+/* podnadpisy */
+.hobbies .section-heading{
+  font-size: 2.2rem;
+  margin-bottom: 28px;
+  color: #82c3ff;
+  text-shadow: 0 0 20px rgba(130,195,255,.35);
+}
+
+/* == Jobs == */
+
+.job{
+    max-width: 1400px;
+    margin: 120px auto 0 auto;
+    padding: 0 80px;
+}
+
+.job > p{
+    font-size: 1.1rem;
+}
+
+.job-card{
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 60px;
+    align-items: center;
+    padding: 50px;
+    background: rgba(255,255,255,0.02);
+    border-radius: 24px;
+    box-shadow: 0 0 35px rgba(130,195,255,.38), 0 25px 60px rgba(0,0,0,.55);
+    margin-top: 40px;
+}
+
+.job-text{
+    color: #d7e3ff;
+}
+
+.job-media img{
+    width: 100%;
+    max-width: 480px;
+    border-radius: 24px;
+    box-shadow: 0 0 45px rgba(138, 145, 44, 0.35);
+}
+
+.slovan .low-info{
+    font-size: 1.2rem;
+    color: #2b78a5;
+    margin-bottom: 17px;
+}
+
+.slovan-jobs{
+    list-style: none;
+    margin: 24px 0;
+    padding: 0;
+}
+
+.slovan-jobs li{
+    position: relative;
+    padding-left: 26px;
+    margin-bottom: 14px;
+    line-height: 1.6;
+    color: #d7e3ff;
+}
+
+.slovan-jobs li::before{
+    content: "▹";
+    position: absolute;
+    left: 0;
+    top: 2px;
+    color: #1785ec;
+    font-size: 1.2rem;
+}
+
+/* BABYLON */
+
+.babylon .low-info{
+    font-size: 1.2rem;
+    color: #f0ff23;
+    margin-bottom: 17px;
+}
+
+.job-card--babylon{
+    grid-template-columns: 1.3fr 1fr;
+}
+
+.job-text{
+    line-height: 1.76;
+}
+
+.babylon .media-main{
+    width: 100%;
+    max-width: 420px;
+    border-radius: 22px;
+    box-shadow: 0 20px 50px rgba(130,195,255,.25);
+    margin-bottom: 24px;
+}
+
+.babylon .media-secondary{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+}
+
+.babylon video{
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 14px;
+    box-shadow: 0 12px 30px rgba(0,0,0,.45);
+}
+
+.babylon .media-secondary img{
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 14px;
+    opacity: .9;
+    box-shadow: 0 10px 25px rgba(0,0,0,.4);
+}
+
+.bonus-info{
+    margin: 32px auto 67px;
+}
+
+.bonus-info .low-info{
+    color: #4da3ff;
+}
+
+/** NOW **/
+.now{
+    max-width: 1400px;
+    margin: 120px auto 0;
+    padding: 0 80px;
+}
+
+.now-layout{
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 80px;
+    align-items: center;
+}
+
+.now p{
+    max-width: 620px;
+    font-size: 1.1rem;
+    line-height: 1.75;
+    margin-bottom: 22px;
+    color: #d7e3ff;
+}
+
+.snowboard-photo{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.snowboard-photo img{
+    width: 100%;
+    max-width: 520px;
+    height: 560px;
+
+    object-fit: cover;
+    object-position: center bottom;
+
+    border-radius: 28px;
+    box-shadow:
+        0 30px 70px rgba(0,0,0,.6),
+        0 0 40px rgba(130,195,255,.25);
+}
+
+/** FUTURE **/
+
+.future{
+  width: 100%;
+  padding: 120px 0;
+  background: linear-gradient(180deg, #040b18, #02040a);
+  color: #d7e3ff;
+}
+
+.future h2{
+  text-align: center;
+  font-size: 2.8rem;
+  margin-bottom: 40px;
+  color: #d2ebf8;
+  text-shadow: 0 0 30px rgba(110,232,236,.4);
+}
+
+.future p{
+  max-width: 820px;
+  margin: 0 auto 24px auto;
+  padding: 0 20px;
+  font-size: 1.15rem;
+  line-height: 1.7;
+  text-align: center;
+}
+
+
+/***** FOOTER *****/
+.footer-page {
+  background: #0b0f1a;
+  text-align: center;
+  padding-bottom: 20px;
+}
+
+.social {
+  text-align: center;
+  margin: 10px 0px;
+}
+
+.social p  {
+  display: inline;
+  margin-right: 20px;
+}
+
+.social p a:link,
+.social p a:visited {
+  text-decoration: none;
+  color: #000;
+  font-size: 25px;
+}
+
+.social p a:hover,
+.social p a:active {
+  color: #fff;
+}
+
+.footer-text {
+  text-align: center;
+  margin: 10px 0px;
+  color: white;
+}
+
+/***** Stop floating *****/
+
+.socials-container{
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  padding: 25px 0; 
+}
+.socials-container a{
+  background-color: white;
+  padding: 1em;
+  border-radius: 50%;
+  height: 64px;
+  width: 64px;
+  box-sizing: border-box;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
+}
+.socials-container a svg{
+  height: 32px;
+}
+.socials-container a::before{
+  content: attr(data-social);
+  position: absolute;
+  background-color: var(--recomend-color);
+  color: white;
+  text-decoration: none;
+  padding: 0.5em 1em;
+  border-radius: 100px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
+  transform: translateY(-30px) rotate(25deg);
+  opacity: 0;
+  transition: 200ms cubic-bezier(.42,0,.44,1.68);
+}
+
+.socials-container a:hover{
+  background-color: var(--recomend-color);
+  fill: white;
+}
+
+.socials-container a::after{
+  content: '';
+  position: absolute;
+  height: 0;
+  width: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 10px solid var(--recomend-color);
+  transform: translateY(0) rotate(25deg);
+  opacity: 0;
+  transition: 200ms cubic-bezier(.42,0,.44,1.68);
+}
+.socials-container a:hover::before{
+  transform: translateY(-65px) rotate(0);
+  opacity: 1;
+}
+.socials-container a:hover::after{
+  transform: translateY(-42px) rotate(0);
+  opacity: 1;
+}

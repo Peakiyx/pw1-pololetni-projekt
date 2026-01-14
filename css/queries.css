@@ -1,0 +1,207 @@
+@media(max-width:900px){
+    .travel-gallery{
+        grid-template-columns:repeat(2, 1fr);
+    }
+
+    .aboutme-container{
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .aboutme-photo{
+        width: 90%;
+        max-width: 380px;
+        height: auto;
+        margin-bottom: 18px;
+    }
+
+    .about-me-container{
+    flex-direction: column;
+    text-align: center;
+  }
+
+  /* ABOUTME */
+  .about-me-photos{
+    flex-wrap: wrap;
+  }
+
+  /* Volný čas */
+  .free-time-layout{
+    grid-template-columns: 1fr;
+  }
+
+  .sport-photos{
+    grid-template-columns: 1fr 1fr;
+  }
+
+  /* Job karty */
+  .job-card{
+    grid-template-columns: 1fr;
+  }
+
+  /* Volný čas dnes */
+  .now-layout{
+    grid-template-columns: 1fr;
+  }
+
+  .snowboard-photo{
+    justify-content: center;
+  }
+
+  .about-me-container,
+  .free-time,
+  .job,
+  .now{
+        padding: 0 32px;
+  }
+}
+
+@media(max-width: 768px){
+
+    /* hamburger zobraz */
+    .open-sidebar-button{
+        display: block;
+        cursor: pointer;
+    }
+
+    /* menu panel */
+    .links-container{
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 280px;
+        height: 100vh;
+        background: #06070d;
+        display: flex;
+        flex-direction: column;
+        padding-top: 70px;
+        transition: .4s;
+        z-index: 10;
+    }
+
+    /* odkazy pod sebou */
+    .nav-menu{
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .nav-menu li{
+        width: 100%;
+        height: auto;
+    }
+
+    .nav-menu li a{
+        height: auto;
+        padding: 14px 26px;
+        justify-content: flex-start;
+    }
+
+    .nav-menu a.active{
+        background: rgba(130,195,255,.12);
+        border-left: 3px solid var(--accent-color);
+        color: var(--accent-color);
+    }
+
+
+    /* křížek */
+    .close-sidebar-button{
+        display: block;
+        position: absolute;
+        top: 18px;
+        left: 20px;
+        cursor: pointer;
+    }
+
+    /* radio hack – otevření menu */
+    #sidebar-active:checked ~ .links-container{
+        right: 0;
+    }
+
+    .nav-menu a:hover{
+        color: var(--text-color);
+    }
+
+    .nav-indicator{
+        display: none;
+    }
+
+    .logo:hover{
+        text-shadow:
+            0 0 4px #82c3ff,
+            0 0 12px #4da3ff;
+    }
+
+    .faq-title{
+        font-size: 2.2rem;
+  }
+
+  .faq-subtitle{
+        font-size: .95rem;
+  }
+
+  details summary{
+        font-size: 1rem;
+        padding: 14px 16px;
+  }
+
+  details p{
+        padding: 0 16px 14px 40px;
+  }
+
+}
+
+@media(max-width:600px){
+  .travel-gallery{
+        grid-template-columns:1fr;
+  }
+
+  .about-me-container,
+  .free-time,
+  .job,
+  .now{
+    padding: 0 24px;
+  }
+
+  /* Fotky ve volném čase */
+  .sport-photos{
+    grid-template-columns: 1fr;
+  }
+
+  /* Babylon – media grid */
+  .babylon .media-secondary{
+    grid-template-columns: 1fr;
+  }
+
+  /* Snowboard fotka */
+  .snowboard-photo img{
+    height: 420px;
+  }
+
+  /* Nadpisy */
+  .hobbies .heading{
+    font-size: 2.4rem;
+  }
+
+  .section-heading{
+    font-size: 1.9rem;
+  }
+
+  .about-me-container,
+  .free-time,
+  .job,
+  .now{
+    padding: 0 20px;
+    max-width: 100%;
+  }
+
+  /* Fotogalerie – povolit zalomení */
+  .about-me-photos{
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .about-me-photos img{
+    width: 45%;
+    height: auto;
+  }
+}
