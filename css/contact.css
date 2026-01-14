@@ -286,21 +286,26 @@ nav{
     to{opacity:1;}
 }
 
+/* CONTACT */
+
 .contact{
     min-height: 100vh;
-    background: radial-gradient(circle at center, rgba(255,200,0,.08), #02040a 70%);
+    background: linear-gradient(180deg, #02040a, #040b18);
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 120px 20px;
+    padding: 100px 20px;
 }
 
 .contact-title{
     font-size: 3.5rem;
-    color: #ffcc33;
+    color: #ffffff;
     letter-spacing: 4px;
     margin-bottom: 60px;
-    text-shadow: 0 0 25px rgba(255,204,51,.5);
+    text-shadow:
+    0 0 12px rgba(130,195,255,.8),
+    0 0 28px rgba(77,163,255,.5),
+    0 0 60px rgba(77,163,255,.25);
 }
 
 .contact-form{
@@ -327,9 +332,9 @@ nav{
 .contact-form textarea,
 .contact-form select{
     background: transparent;
-    border: 1px solid rgba(255,204,51,.4);
+    border: 1px solid rgba(9, 84, 153, 0.8);
     padding: 14px;
-    color: white;
+    color: rgb(0, 131, 253);
     font-size: 1rem;
     border-radius: 4px;
     outline: none;
@@ -338,8 +343,8 @@ nav{
 .contact-form input:focus,
 .contact-form textarea:focus,
 .contact-form select:focus{
-    border-color: #ffcc33;
-    box-shadow: 0 0 15px rgba(255,204,51,.3);
+    border-color: rgb(21, 116, 206);
+    box-shadow: 0 0 15px rgba(77,163,255,.25);
 }
 
 .form-row{
@@ -365,17 +370,21 @@ nav{
     margin-top: 30px;
     align-self: center;
     padding: 16px 48px;
-    background: #ffcc33;
+    background:#4da3ff;
     color: black;
     border: none;
     font-weight: 700;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
     cursor: pointer;
     transition: .3s ease;
+    text-decoration:none;
+    box-shadow:0 0 25px rgba(77,163,255,.35);
+    border-radius:8px;
 }
 
 .submit-btn:hover{
-    box-shadow: 0 0 30px rgba(255,204,51,.6);
+    background:#82c3ff;
+    box-shadow:0 0 20px rgba(130,195,255,.55);
     transform: translateY(-2px);
 }
 
