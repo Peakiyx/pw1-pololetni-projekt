@@ -12,6 +12,7 @@ html {
   overflow-x: hidden;
   padding-top: 60px;
   font-family: Poppins, Segoe UI, Tahoma, sans-serif;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -165,6 +166,32 @@ nav{
   box-shadow: 0 0 12px rgba(130,195,255,.7);
 }
 
+/* ===== SCROLL ===== */
+.scroll-down{
+  margin-top: 3.5rem;           
+  font-size: clamp(3rem, 8vw, 5.2rem);
+  color: var(--accent-color);
+  text-decoration: none;
+  animation: scrollBounce 1.6s infinite;
+  text-shadow: 0 0 10px rgba(130,195,255,.7);
+  opacity: .85;
+  margin-left: 2.5rem;
+}
+
+@keyframes scrollBounce{
+  0%{
+    transform: translate(-50%, 0);
+    opacity: .4;
+  }
+  50%{
+    transform: translate(-50%, 10px);
+    opacity: 1;
+  }
+  100%{
+    transform: translate(-50%, 0);
+    opacity: .4;
+  }
+}
 
 /***** MAIN *****/
 
@@ -303,6 +330,17 @@ nav{
   text-align: center;
 }
 
+.gallery-item{
+  position: relative;
+  overflow: hidden;
+  border-radius: 18px;
+  background: #050b18;
+  box-shadow: 0 0 35px rgba(77,163,255,.25);
+  cursor: pointer;
+
+  aspect-ratio: 3 / 4;   /* ⬅️ KLÍČOVÉ */
+}
+
 .gallery-title{
   font-size: 3rem;
   margin-bottom: 60px;
@@ -319,16 +357,6 @@ nav{
   gap: 32px;
   max-width: 1500px;
   margin: auto;
-}
-
-/* ITEM */
-.gallery-item{
-  position: relative;
-  overflow: hidden;
-  border-radius: 18px;
-  background: #050b18;
-  box-shadow: 0 0 35px rgba(77,163,255,.25);
-  cursor: pointer;
 }
 
 /* IMAGE */
