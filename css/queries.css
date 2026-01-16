@@ -68,15 +68,21 @@
     .links-container{
         position: fixed;
         top: 0;
-        right: -100%;
-        width: 280px;
+        right: 0;
+        width: 75vw;            
+        max-width: 320px;
         height: 100vh;
         background: #06070d;
         display: flex;
         flex-direction: column;
         padding-top: 70px;
-        transition: .4s;
-        z-index: 10;
+        transform: translateX(100%);
+        transition: transform .4s ease;
+        z-index: 1001;
+    }
+
+    #sidebar-active:checked ~ .links-container{
+    transform: translateX(0);
     }
 
     /* odkazy pod sebou */
@@ -102,6 +108,18 @@
         color: var(--accent-color);
     }
 
+
+    .menu-overlay{
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,.45);
+        z-index: 1000;
+        display: none;
+    }
+
+    #sidebar-active:checked ~ .menu-overlay{
+    display: block;
+    }
 
     /* křížek */
     .close-sidebar-button{
@@ -147,6 +165,7 @@
   details p{
         padding: 0 16px 14px 40px;
   }
+  /* CONTACT */ .form-row { display: flex; flex-direction: column; gap: 20px; }  .form-group { width: 100%; } .contact-form { padding: 0 20px; }
 
 }
 

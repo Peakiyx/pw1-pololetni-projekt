@@ -1,12 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&display=swap');
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+html, body{
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+
 body{
   padding-top: 60px;
 }
+
 
 /* HEADER (MENU) */
 
@@ -33,8 +43,6 @@ label{
     user-select: none;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&display=swap');
-
 :root{
   --color-1: #06070d;
   --text-color: #e9ecff;
@@ -52,8 +60,11 @@ nav{
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  z-index: 1000;
+
+  width: 100vw;          
+  max-width: 100vw;
+  box-sizing: border-box;
+
   height: 60px;
   background-color: #0b0f1a;
   display: flex;
@@ -62,6 +73,7 @@ nav{
   padding: 0 20px;
   border-bottom: 1px solid var(--accent-color);
   backdrop-filter: blur(4px);
+  z-index: 1000;
 }
 
 /* odkazy vpravo */
@@ -117,6 +129,10 @@ nav{
 
 #sidebar-active{
     display: none;
+}
+
+.close-sidebar-button{
+  z-index: 1002;
 }
 
 .open-sidebar-button,
