@@ -58,6 +58,10 @@
 
 @media(max-width: 768px){
 
+
+    .html, body{
+        overflow-x: hidden;
+    }
     /* hamburger zobraz */
     .open-sidebar-button{
         display: block;
@@ -66,21 +70,21 @@
 
     /* menu panel */
     .links-container{
-        position: fixed;
-        top: 0;
-        right: 0;
-        width: 75vw;            
-        max-width: 320px;
-        height: 100vh;
-        background: #06070d;
-        display: flex;
-        flex-direction: column;
-        padding-top: 70px;
-        transform: translateX(100%);
-        transition: transform .4s ease;
-        z-index: 1001;
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 280px;
+      height: 100vh;
+      background: #06070d;
+      display: flex;
+      flex-direction: column;
+      padding-top: 70px;
+      transform: translateX(100%); /* SCHOVANÉ */
+      transition: transform 0.35s ease;
+      z-index: 2000;
     }
 
+    
     #sidebar-active:checked ~ .links-container{
     transform: translateX(0);
     }

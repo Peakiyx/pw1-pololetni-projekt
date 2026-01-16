@@ -6,8 +6,16 @@
   box-sizing: border-box;
 }
 
-body{
+html {
+  width: 100%;
+  overflow-x: hidden;
   padding-top: 60px;
+}
+
+body {
+  width: 100%;
+  overflow-x: hidden;
+  position: relative;
 }
 
 /* HEADER (MENU) */
