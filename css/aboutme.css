@@ -30,11 +30,16 @@ body {
     font-size: 1.2rem;
     white-space: nowrap;
     letter-spacing: 0.5px;
-    pointer-events: none;
+    pointer-events: auto;
     user-select: none;
     text-transform: uppercase;
     text-shadow: 0 0 32px #82c3ff;
     color: var(--text-color);
+}
+
+.logo a {
+  text-decoration: none;
+  color: var(--text-color);
 }
 
 .open-sidebar-button img,
