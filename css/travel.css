@@ -520,3 +520,40 @@ nav{
   transform: translateY(-42px) rotate(0);
   opacity: 1;
 }
+
+/* NAHRAĎ původní .lb-btn, .lb-prev, .lb-next, .lb-close za toto: */
+
+.lb-btn {
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: white;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 20px;
+  flex-shrink: 0;
+  transition: background 0.2s;
+}
+.lb-btn:hover { background: rgba(255,255,255,0.25); }
+
+.lb-close {
+  position: fixed;
+  top: 18px;
+  right: 22px;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: white;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 20px;
+  z-index: 10000;
+}
