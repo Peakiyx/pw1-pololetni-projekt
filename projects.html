@@ -64,7 +64,7 @@
 
         <div class="section-separator"></div>
 
-        <section id="projects" class="featured-projects">
+        <section id="projects" class="featured-projects" data-gallery>
             <h2 class="section-title">Vybrané projekty</h2>
 
             <article class="project-row">
@@ -83,7 +83,7 @@
                 </div>
 
                 <div class="project-media">
-                    <img src="css/images/web-portfolio.png" alt="Ukázka portfolio webu">
+                    <img class="lb-item" src="css/images/web-portfolio.png" alt="Ukázka portfolio webu">
                 </div>
             </article>
 
@@ -104,7 +104,7 @@
                 </div>
 
                 <div class="project-media">
-                    <img src="css/images/roblox-minigame.png" alt="Roblox parkour hra">
+                    <img class="lb-item" src="css/images/roblox-minigame.png" alt="Roblox parkour hra">
                 </div>
             </article>
 
@@ -125,7 +125,7 @@
                 </div>
 
                 <div class="project-media">
-                    <img src="css/images/safepathbot.jpg" alt="Zařízení SafePathBot">
+                    <img class="lb-item" src="css/images/safepathbot.jpg" alt="Zařízení SafePathBot">
                 </div>
             </article>
 
@@ -146,7 +146,7 @@
                 </div>
 
                 <div class="project-media">
-                    <img src="css/images/build-pc-completed.jpg" alt="Sestavený stolní počítač">
+                    <img class="lb-item" src="css/images/build-pc-completed.jpg" alt="Sestavený stolní počítač">
                 </div>
             </article>
 
@@ -154,7 +154,7 @@
 
         <div class="section-separator"></div>
 
-        <section class="my-components">
+        <section class="my-components" data-gallery>
             <h2>IT a technologie</h2>
 
             <article class="tech-block">
@@ -180,7 +180,7 @@
                 </div>
 
                 <div class="tech-image">
-                    <img src="css/images/notebook-setup.jpg" alt="Notebook setup">
+                    <img class="lb-item" src="css/images/notebook-setup.jpg" alt="Notebook setup">
                 </div>
             </article>
             
@@ -243,7 +243,7 @@
                 </div>
 
                 <div class="tech-image">
-                    <img src="css/images/pc-setup.jpg" alt="PC setup">
+                    <img class="lb-item" src="css/images/pc-setup.jpg" alt="PC setup">
                 </div>
             </article>
             
@@ -285,5 +285,113 @@
 
     </footer>
 
+        <div class="lb-overlay" id="lb">
+  <button class="lb-close" id="lb-close">✕</button>
+  <div class="lb-row">
+    <button class="lb-btn" id="lb-prev">&#8249;</button>
+    <div class="lb-img-wrap">
+      <img id="lb-img" src="" alt="">
+      <div class="lb-caption" id="lb-caption"></div>
+    </div>
+    <button class="lb-btn" id="lb-next">&#8250;</button>
+  </div>
+  <div class="lb-dots" id="lb-dots"></div>
+</div>
+<script>
+    const overlay = document.getElementById('lb');
+const lbImg = document.getElementById('lb-img');
+const lbCaption = document.getElementById('lb-caption');
+const dotsEl = document.getElementById('lb-dots');
+const prevBtn = document.getElementById('lb-prev');
+const nextBtn = document.getElementById('lb-next');
+
+let items = [];
+let current = 0;
+
+function lock() {
+  document.body.style.overflow = 'hidden';
+}
+function unlock() {
+  document.body.style.overflow = '';
+}
+
+function show(i) {
+  current = i;
+
+  const img = items[i];
+
+  lbImg.style.opacity = 0;
+  lbImg.style.transform = 'scale(0.92)';
+
+  setTimeout(() => {
+    lbImg.src = img.src;
+    lbImg.alt = img.alt;
+    lbCaption.textContent = img.alt;
+    lbImg.style.opacity = 1;
+    lbImg.style.transform = 'scale(1)';
+  }, 120);
+
+  const one = items.length <= 1;
+  prevBtn.style.display = one ? "none" : "flex";
+  nextBtn.style.display = one ? "none" : "flex";
+
+  dotsEl.innerHTML = "";
+  if (!one) {
+    items.forEach((_, j) => {
+      const d = document.createElement('div');
+      d.className = 'lb-dot' + (j === i ? ' active' : '');
+      d.onclick = () => show(j);
+      dotsEl.appendChild(d);
+    });
+  }
+}
+
+function openLb(galleryItems, i) {
+  items = galleryItems;
+  overlay.classList.add('active');
+  lock();
+  show(i);
+}
+
+function closeLb() {
+  overlay.classList.remove('active');
+  unlock();
+}
+
+document.querySelectorAll('[data-gallery]').forEach(gallery => {
+  const imgs = [...gallery.querySelectorAll('.lb-item')];
+
+  imgs.forEach((img, i) => {
+    img.style.cursor = "pointer";
+    img.addEventListener('click', () => openLb(imgs, i));
+  });
+});
+
+document.getElementById('lb-close').addEventListener('click', closeLb);
+
+overlay.addEventListener('click', e => {
+  if (e.target === overlay) closeLb();
+});
+
+prevBtn.onclick = (e) => {
+  e.stopPropagation();
+  show((current - 1 + items.length) % items.length);
+};
+
+nextBtn.onclick = (e) => {
+  e.stopPropagation();
+  show((current + 1) % items.length);
+};
+
+document.addEventListener('keydown', e => {
+  if (!overlay.classList.contains('active')) return;
+
+  if (e.key === 'Escape') closeLb();
+  if (items.length > 1) {
+    if (e.key === 'ArrowLeft') show((current - 1 + items.length) % items.length);
+    if (e.key === 'ArrowRight') show((current + 1) % items.length);
+  }
+});
+</script>
 </body>
 </html>

@@ -64,7 +64,7 @@
         <div class="section-separator"></div>
 
 
-        <section id="content" class="about-me">
+        <section id="content" class="about-me" data-gallery>
             <div class="about-me-container">
 
                 <div class="about-me-text">
@@ -77,11 +77,11 @@
                     <p>Na základní škole jsem navštěvoval školní kroužek informatiky, kde jsme pracovali například ve Scratchi a také s Ozoboty.</p>
                 </div>
 
-                <div class="about-me-photos">
-                    <img src="css/images/me2.jpg" alt="Tomáš Sklenář">
-                    <img src="css/images/me3.jpg" alt="Tomáš Sklenář">
-                    <img src="css/images/me6.jpg" alt="Tomáš Sklenář">
-                    <img src="css/images/me5.jpg" alt="Tomáš Sklenář">
+                <div class="about-me-photos" data-gallery>
+                    <img class="lb-item" src="css/images/me2.jpg" alt="Tomáš Sklenář">
+                    <img class="lb-item" src="css/images/me3.jpg" alt="Tomáš Sklenář">
+                    <img class="lb-item" src="css/images/me6.jpg" alt="Tomáš Sklenář">
+                    <img class="lb-item" src="css/images/me5.jpg" alt="Tomáš Sklenář">
                 </div>
 
             </div>
@@ -98,7 +98,7 @@
 
         <div class="section-separator"></div>
 
-        <section class="hobbies">
+        <section class="hobbies" data-gallery>
             <h2 class="heading">Koníčky</h2>
             <div class="free-time">
                 <h3 class="section-heading">Volný čas a zájmy</h3>
@@ -112,14 +112,14 @@
                     </div>
 
                     <div class="sport-photos">
-                        <img src="css/images/miminko_fotbal.jpg" alt="Fotbal fotka">
-                        <img src="css/images/miminko_trampoliny.jpg" alt="Skákání na trampolínách v dětství">
+                        <img class="lb-item" src="css/images/miminko_fotbal.jpg" alt="Fotbal fotka">
+                        <img class="lb-item" src="css/images/miminko_trampoliny.jpg" alt="Skákání na trampolínách v dětství">
                     </div>
                 </div>
             </div>
                 
             
-            <div class="job">
+            <div class="job" data-gallery>
                 <h3 class="section-heading">Brigády a pracovní zkušenosti</h3>
 
                 <p>Během studia jsem měl možnost vyzkoušet si několik brigád, které mi daly cenné zkušenosti nejen po pracovní, ale i osobní stránce.</p>
@@ -138,7 +138,7 @@
                             </div>
                 
                             <div class="job-media">
-                                <img src="css/images/slovan_maskot.jpg" alt="slovan maskot">
+                                <img class="lb-item" src="css/images/slovan_maskot.jpg" alt="slovan maskot">
                             </div>
                     </div>
                 </div>
@@ -161,8 +161,8 @@
                                     Váš prohlížeč nepodporuje video.
                                 </video>
                                 <iframe src="https://www.youtube.com/embed/_HKhi_crU9Q?start=835" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                                <img src="css/images/best_employee.jpg" alt="Zaměstnanec měsíce">
-                                <img class="media-main" src="css/images/babylon_maskot.jpg" alt="babylon maskot">
+                                <img class="lb-item" src="css/images/best_employee.jpg" alt="Zaměstnanec měsíce">
+                                <img class="media-main lb-item" src="css/images/babylon_maskot.jpg" alt="babylon maskot">
                             </div>
                         </div>
         
@@ -189,7 +189,7 @@
                     </div>
                     
                     <div class="snowboard-photo">
-                        <img src="css/images/snowboard.jpg" alt="snowboard">
+                        <img class="lb-item" src="css/images/snowboard.jpg" alt="snowboard">
                     </div>
                 </div>
                 
@@ -242,5 +242,113 @@
         </div>
 
     </footer>
+    <div class="lb-overlay" id="lb">
+  <button class="lb-close" id="lb-close">✕</button>
+  <div class="lb-row">
+    <button class="lb-btn" id="lb-prev">&#8249;</button>
+    <div class="lb-img-wrap">
+      <img id="lb-img" src="" alt="">
+      <div class="lb-caption" id="lb-caption"></div>
+    </div>
+    <button class="lb-btn" id="lb-next">&#8250;</button>
+  </div>
+  <div class="lb-dots" id="lb-dots"></div>
+</div>
+<script>
+    const overlay = document.getElementById('lb');
+const lbImg = document.getElementById('lb-img');
+const lbCaption = document.getElementById('lb-caption');
+const dotsEl = document.getElementById('lb-dots');
+const prevBtn = document.getElementById('lb-prev');
+const nextBtn = document.getElementById('lb-next');
+
+let items = [];
+let current = 0;
+
+function lock() {
+  document.body.style.overflow = 'hidden';
+}
+function unlock() {
+  document.body.style.overflow = '';
+}
+
+function show(i) {
+  current = i;
+
+  const img = items[i];
+
+  lbImg.style.opacity = 0;
+  lbImg.style.transform = 'scale(0.92)';
+
+  setTimeout(() => {
+    lbImg.src = img.src;
+    lbImg.alt = img.alt;
+    lbCaption.textContent = img.alt;
+    lbImg.style.opacity = 1;
+    lbImg.style.transform = 'scale(1)';
+  }, 120);
+
+  const one = items.length <= 1;
+  prevBtn.style.display = one ? "none" : "flex";
+  nextBtn.style.display = one ? "none" : "flex";
+
+  dotsEl.innerHTML = "";
+  if (!one) {
+    items.forEach((_, j) => {
+      const d = document.createElement('div');
+      d.className = 'lb-dot' + (j === i ? ' active' : '');
+      d.onclick = () => show(j);
+      dotsEl.appendChild(d);
+    });
+  }
+}
+
+function openLb(galleryItems, i) {
+  items = galleryItems;
+  overlay.classList.add('active');
+  lock();
+  show(i);
+}
+
+function closeLb() {
+  overlay.classList.remove('active');
+  unlock();
+}
+
+document.querySelectorAll('[data-gallery]').forEach(gallery => {
+  const imgs = [...gallery.querySelectorAll('.lb-item')];
+
+  imgs.forEach((img, i) => {
+    img.style.cursor = "pointer";
+    img.addEventListener('click', () => openLb(imgs, i));
+  });
+});
+
+document.getElementById('lb-close').addEventListener('click', closeLb);
+
+overlay.addEventListener('click', e => {
+  if (e.target === overlay) closeLb();
+});
+
+prevBtn.onclick = (e) => {
+  e.stopPropagation();
+  show((current - 1 + items.length) % items.length);
+};
+
+nextBtn.onclick = (e) => {
+  e.stopPropagation();
+  show((current + 1) % items.length);
+};
+
+document.addEventListener('keydown', e => {
+  if (!overlay.classList.contains('active')) return;
+
+  if (e.key === 'Escape') closeLb();
+  if (items.length > 1) {
+    if (e.key === 'ArrowLeft') show((current - 1 + items.length) % items.length);
+    if (e.key === 'ArrowRight') show((current + 1) % items.length);
+  }
+});
+</script>
 </body>
 </html>
